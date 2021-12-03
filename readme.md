@@ -1,6 +1,6 @@
 # FIFA - CONMEBOL - API
 
-Language: ES 🇪🇦 - EN 🇺🇲
+Language: ES 🇪🇦 - EN 🇺🇲🇺🇸
 
 El siguiente API contiene información de las asociaciones de la CONMEBOL.
 Esta API se está realizando para poder aprender, practicar, y mejorar las habilidades en JS, NodeJS, y mas.
