@@ -30,17 +30,39 @@ http.createServer((req, res) => {
             res.writeHead(data.status, {'Content-Type' : data.contenType})
             let resultados = JSON.parse(data.data.toString('utf-8'))
             let equipos = []
-            resultados.asociaciones.forEach(key => {
-                equipos.push(key.equipo)
+            resultados.asociaciones.forEach(aso => {
+                equipos.push(aso.equipo)
             })
-            console.log(equipos)
-            // console.log(Object.keys(resultados.asociaciones))
             res.end(JSON.stringify(equipos))
         }).catch(err => {
             res.writeHead(404, {'Content-Type' : 'text/plain'})
             res.end('No hay informacion \n' + err)
         })
-    }else {
+    } else if(req.url === '/api/jugadores'){
+        let allInfo = new Promise((resolve, reject) => {
+            fs.readFile('./data.json', (err, data) => {
+                if(err) return reject(err)
+                resolve({data, contenType: 'application/json', status: 200})
+            })
+        })
+
+        allInfo.then(data => {
+            res.writeHead(data.status, {'Content-Type' : data.contenType})
+            let resultados = JSON.parse(data.data.toString('utf-8'))
+            let jugadores = []
+            resultados.asociaciones.forEach(aso => {
+                aso.equipo.forEach(equip => {
+                    jugadores.push(equip.jugadores)
+                })
+            })
+            // console.log(jugadores)
+            // console.log(Object.keys(resultados.asociaciones))
+            res.end(JSON.stringify(jugadores))
+        }).catch(err => {
+            res.writeHead(404, {'Content-Type' : 'text/plain'})
+            res.end('No hay informacion \n' + err)
+        })
+    } else {
         res.writeHead(404, {'Content-Type' : 'text/plain'})
         res.end('No hay esa ruta \n')
     }
