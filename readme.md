@@ -22,6 +22,20 @@ It has the following information:
 - Players
 
 
+## Requests
+- Obtener todas las asocianciones:
+``` html
+GET http://localhost:8888/api
+```
+- Obtener todos los equipos:
+``` html
+GET http://localhost:8888/api/equipos
+```
+- Obtener todos los jugadores:
+``` html
+GET http://localhost:8888/api/jugadores
+```
+
 
 ## Obterner información
 Los siguientes links nos ayudarán para obtener la información para llenar el API:
